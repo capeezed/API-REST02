@@ -1,6 +1,6 @@
-# 📚 Biblioteca API
+#  Biblioteca API
 
-## 📌 Sobre o projeto
+##  Sobre o projeto
 A **Biblioteca API** é uma aplicação REST construída em **Java 17** com **Spring Boot**, que simula o fluxo de um sistema de gerenciamento de livros:
 
 Cliente → API REST → Banco em memória (H2) → Resposta
@@ -18,7 +18,7 @@ Funcionalidades implementadas:
 
 ---
 
-## ✨ Objetivos de aprendizagem
+##  Objetivos de aprendizagem
 Ao concluir este projeto, você será capaz de:
 
 - Criar e executar uma API REST com **Spring Boot**
@@ -29,7 +29,7 @@ Ao concluir este projeto, você será capaz de:
 
 ---
 
-## 🧰 Tecnologias utilizadas
+##  Tecnologias utilizadas
 - **Java 17**
 - **Spring Boot 3.5.11**
 - Spring Web
@@ -41,7 +41,7 @@ Ao concluir este projeto, você será capaz de:
 
 ---
 
-## 🗂️ Estrutura do projeto
+##  Estrutura do projeto
 
 ```
 biblioteca-api/
@@ -66,72 +66,46 @@ biblioteca-api/
 │       └── BibliotecaApiApplicationTests.java
 └── target/
 ```
-✅ Pré-requisitos
+## Pré-requisitos
 
 Antes de executar o projeto, você precisa ter instalado:
 
 VS Code
 
-Java JDK 17
-
-Extensões do VS Code:
-
-Extension Pack for Java
-
-Spring Boot Extension Pack
-
-Git (opcional, recomendado)
-
-Verifique a versão do Java no terminal:
-
-java -version
-# Deve mostrar Java 17
-🚀 Guia completo no VS Code
-1️⃣ Criar o projeto Spring Boot
-
-Ctrl + Shift + P → Spring Initializr: Create a Maven Project
+- Java JDK 17
+- Extensões do VS Code:
+- Extension Pack for Java
+- Spring Boot Extension Pack
+- Git
 
 Configurações:
 
 Language: Java
-
 Spring Boot: 3.5.11
-
 Group Id: com.facens
-
 Artifact Id: biblioteca-api
-
 Packaging: Jar
-
 Java: 17
 
 Dependências:
 
-Spring Web
-
-Spring Boot DevTools
-
-Lombok
-
-Spring Data JPA
-
-H2 Database
+1. Spring Web
+2. Spring Boot DevTools
+3. Lombok
+4. Spring Data JPA
+5. H2 Database
 
 2️⃣ Estrutura em camadas
 
 Criar pacotes dentro de:
-
-src/main/java/com/facens/biblioteca_api/
-
-controller
-
-service
-
-repository
-
-model
+[-src/main/java/com/facens/biblioteca_api/
+-controller
+-service
+-repository
+-model
 
 3️⃣ Configuração do H2 (application.properties)
+
 spring.datasource.url=jdbc:h2:mem:biblioteca
 spring.datasource.username=sa
 spring.datasource.password=
@@ -139,6 +113,7 @@ spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+
 4️⃣ Modelo da entidade Livro
 
 Campos utilizados:
@@ -169,55 +144,64 @@ Devolução de livro (não permite devolver livro não emprestado)
 
 Mapeamento base: /livros
 
-Endpoints disponíveis:
+## Endpoints disponíveis:
 
-Método	Endpoint	Descrição
-GET	/livros	Lista todos os livros
-GET	/livros/teste	Verifica se API está ativa
-GET	/livros/{id}	Busca livro por ID
-POST	/livros	Cadastra novo livro
-PUT	/livros/{id}	Atualiza dados do livro
-DELETE	/livros/{id}	Remove livro
-PUT	/livros/{id}/emprestar	Marca livro como emprestado
-PUT	/livros/{id}/devolver	Marca livro como devolvido
+(Método - Endpoint
+- Descrição)
+  
+GET	/livros:	
+Lista todos os livros
+
+GET	/livros/teste:
+Verifica se API está ativa
+
+GET	/livros/{id}:	
+Busca livro por ID
+
+POST	/livros:
+Cadastra novo livro
+
+PUT	/livros/{id}:
+Atualiza dados do livro
+
+DELETE	/livros/{id}:
+Remove livro
+
+PUT	/livros/{id}/emprestar:
+Marca livro como emprestado
+
+PUT	/livros/{id}/devolver:
+Marca livro como devolvido
 
 Exemplo de body para criação/atualização:
-
 {
   "titulo": "Java para Web",
   "autor": "William Alves"
 }
-🧪 Dados iniciais no H2
+
+## Dados iniciais no H2
 
 O projeto já carrega 3 livros automaticamente via data.sql.
 
 Exemplo de consulta:
 
 GET http://localhost:8080/livros
-🧪 Testando no Postman / Insomnia
+## Testando no Postman / Insomnia
 
 Sequência recomendada:
 
-GET /livros/teste → valida se API está ativa
+1. GET /livros/teste → valida se API está ativa
+2. GET /livros → lista livros existentes
+3. POST /livros → cria novo livro
+4. GET /livros/{id} → consulta livro criado
+5. PUT /livros/{id} → atualiza livro
+6. PUT /livros/{id}/emprestar → empresta livro
+7. PUT /livros/{id}/devolver → devolve livro
+8. DELETE /livros/{id} → remove livro
 
-GET /livros → lista livros existentes
+## Solução de problemas comuns
 
-POST /livros → cria novo livro
-
-GET /livros/{id} → consulta livro criado
-
-PUT /livros/{id} → atualiza livro
-
-PUT /livros/{id}/emprestar → empresta livro
-
-PUT /livros/{id}/devolver → devolve livro
-
-DELETE /livros/{id} → remove livro
-
-🧯 Solução de problemas comuns
-
-Porta 8080 ocupada: alterar server.port=8081 no application.properties
-
-Wrapper não executa no Windows: usar .\mvnw.cmd clean test
+!Porta 8080 ocupada: alterar server.port=8081 no application.properties
+!Wrapper não executa no Windows: usar .\mvnw.cmd clean test
 
 H2 não abre: verificar URL JDBC jdbc:h2:mem:biblioteca e usuário sa sem senha
